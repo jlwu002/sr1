@@ -75,12 +75,12 @@ def extract_solution(solution_str):
 #     return [-abs(20 - len(completion)) for completion in completions]
 
 
-def compute_score_em(completions, ground_truths, format_bonus_val = 0.0):
+def compute_score_em(completions, ground_truth, format_bonus_val = 0.0):
     """The scoring function for exact match (EM).
 
     Args:
         solution_str: the solution text
-        ground_truths: the ground truth
+        ground_truth: the ground truth
         method: the method to extract the solution, choices are 'strict' and 'flexible'
         format_score: the score for the format
         score: the score for the correct answer
@@ -97,7 +97,7 @@ def compute_score_em(completions, ground_truths, format_bonus_val = 0.0):
     if answer is None:
         return 0
     else:
-        if em_check(answer, ground_truths):
+        if em_check(answer, ground_truth['target']):
             return 1.0 + format_bonus
         else:
             return format_bonus
